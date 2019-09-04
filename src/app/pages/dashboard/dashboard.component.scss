@@ -1,0 +1,142 @@
+// VARIABLES MODO RESPONSIVE
+$break-extraSmall : 576px; //menor
+$break-small : 576px; //mayor all
+$break-medium : 768px;
+$break-large : 992px;
+$break-extraLarge : 1200px;
+
+div.migas {
+  align-items: center;
+  display: flex;
+  padding: 1%;
+}
+
+@mixin styleCard {
+  position: relative;
+  -webkit-box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+  background-color: #FFF;
+  border-radius: 6px;
+  height: 500px;
+  overflow: hidden;
+}
+
+@mixin AnimateCard {
+  @-webkit-keyframes shimmer {
+    0% {
+      background-position: -100% 0;
+    }
+
+    100% {
+      background-position: 100% 0;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1200px 0;
+    }
+
+    100% {
+      background-position: 1200px 0;
+    }
+  }
+}
+
+@mixin shimmerBG {
+  animation-duration: 2.2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: shimmer;
+  animation-timing-function: linear;
+  background: #E5F0FB;
+  background: linear-gradient(to right, #c1dceb 4%, #a3cbe1 25%, #c1dceb 36%);
+  background-size: 1200px 100%;
+}
+
+.card-container {
+  display: flex;
+  @media screen and (max-width: $break-extraSmall) {
+    display: inline-block; 
+    width: 100%;
+  }
+  .card_small {
+    width: 25%;
+
+    @media screen and (max-width: $break-extraSmall) { 
+      width: 100%;
+    }
+
+    @include styleCard;
+
+    &:nth-child(4) {
+      transform: scale(0.9);
+    }
+
+    &:nth-child(3) {
+      transform: scale(0.9);
+    }
+
+    &:nth-child(2) {
+      transform: scale(0.9);
+    }
+
+    &:nth-child(1) {
+      transform: scale(0.9);
+    }
+
+    .shimmerBG {
+      @include shimmerBG;
+    }
+
+    @include AnimateCard;
+  }
+
+  .card {
+    width: 100%;
+
+    @media screen and (max-width: $break-extraSmall) {
+      width: 90%;
+    }
+
+    @include styleCard;
+
+    .shimmerBG {
+      @include shimmerBG;
+    }
+
+    @include AnimateCard;
+  }
+
+
+
+  .media {
+    height: 200px;
+  }
+
+  .p-32 {
+    padding: 32px;
+  }
+
+  .title-line {
+    height: 24px;
+    width: 100%;
+    margin-bottom: 12px;
+    border-radius: 20px;
+  }
+
+  .content-line {
+    height: 8px;
+    width: 100%;
+    margin-bottom: 16px;
+    border-radius: 8px;
+  }
+
+  .end {
+    width: 40%;
+  }
+}
+
+.m-t-24 {
+  margin-top: 24px;
+}

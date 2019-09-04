@@ -1,0 +1,340 @@
+<!--INICIO ETIQUETA PARA MOSTRAR LAS NOTIFICACIONES -->
+<div id="notification-container"></div>
+<!--FIN ETIQUETA PARA MOSTRAR LAS NOTIFICACIONES -->
+
+<div class="container-fluid">
+    <div class="card m-4  container-header">
+
+        <div class="card-header d-flex justify-content-start">
+            <mat-icon matSuffix class="size-3 mr-2">person</mat-icon>
+            <h5>Proveedores</h5>
+        </div>
+        <div class="card-body">
+
+            <!-- INICIO CONTENEDOR DE CREAR -->
+            <div class="mb-3" *ngIf="openWindowOf=='create'">
+                <fieldset class="card">
+
+                    <legend class="s-legend">
+                        <mat-icon matSuffix>add</mat-icon><span>Crear un nuevo Proveedor</span>
+                    </legend>
+
+                    <div>
+
+                        <form [formGroup]="providerForm" (ngSubmit)="onCreateProvider()" class="form-container">
+
+                            <div class="container-input">
+
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <input type="text" matInput placeholder="Nombre" name="providerName" formControlName="providerName" required id="providerName" appAutoFocus>
+                                    <mat-icon matSuffix>short_text</mat-icon>
+                                </mat-form-field>
+
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <input type="text" matInput placeholder="RTN" name="providerRtn" formControlName="providerRtn" required>
+                                    <mat-icon matSuffix>short_text</mat-icon>
+                                </mat-form-field>
+
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <span matPrefix>+504 &nbsp;</span>
+                                    <input matInput placeholder="Teléfono 1" type="tel" name="providerPhone1" formControlName="providerPhone1" required>
+                                    <mat-icon matSuffix>phone</mat-icon>
+                                </mat-form-field>
+
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <span matPrefix>+504 &nbsp;</span>
+                                    <input matInput placeholder="Teléfono 2" type="text" name="providerPhone2" formControlName="providerPhone2" required>
+                                    <mat-icon matSuffix>phone</mat-icon>
+                                </mat-form-field>
+
+                            </div>
+
+                            <div class="container-input">
+
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <textarea matInput placeholder="Dirección" name="providerAddress" formControlName="providerAddress" required> </textarea>
+                                    <mat-icon matSuffix>notes</mat-icon>
+                                </mat-form-field>
+
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <input matInput placeholder="Correo Electrónico" type="email" name="providerEmail" formControlName="providerEmail" required>
+                                    <mat-icon matSuffix>alternate_email</mat-icon>
+                                </mat-form-field>
+
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <input matInput placeholder="Nombre de Contacto" type="text" name="providerContact" formControlName="providerContact" required>
+                                    <mat-icon matSuffix>contacts</mat-icon>
+                                </mat-form-field>
+
+                            </div>
+                            <div class="container-input">
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <mat-select placeholder="Ciudad" formControlName="cityId" name="cityId">
+                                        <mat-option *ngFor="let city of _cities" [value]="city.cityId">
+                                            {{city.cityName}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-icon matSuffix>location_city</mat-icon>
+                                </mat-form-field>
+
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <input matInput placeholder="Posicion del contacto" type="text" name="contactPosition" formControlName="contactPosition" required>
+                                    <mat-icon matSuffix>group</mat-icon>
+                                </mat-form-field>
+
+                            </div>
+                            <div class="container-button">
+                                <button mat-flat-button class="my-bg-primary text-white" type="submit" [disabled]="!providerForm.valid">Guardar Cambios</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </fieldset>
+            </div>
+            <!-- FIN CONTENEDOR DE CREAR -->
+
+            <!-- INICIO CONTENEDOR DE EDITAR -->
+            <div class="mb-3" *ngIf="openWindowOf=='edit'">
+                <fieldset class="card">
+
+                    <legend class="s-legend">
+                        <mat-icon matSuffix>edit</mat-icon><span>Editar Datos del Proveedor</span>
+                    </legend>
+
+                    <div>
+
+                        <form [formGroup]="providerForm" (ngSubmit)="onEditProvider()" class="form-container">
+
+                            <div class="container-input">
+
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <input type="text" matInput placeholder="Nombre" name="providerName" formControlName="providerName" required id="providerName" appAutoFocus>
+                                    <mat-icon matSuffix>short_text</mat-icon>
+                                </mat-form-field>
+
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <input type="text" matInput placeholder="RTN" name="providerRtn" formControlName="providerRtn" required>
+                                    <mat-icon matSuffix>short_text</mat-icon>
+                                </mat-form-field>
+
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <span matPrefix>+504 &nbsp;</span>
+                                    <input matInput placeholder="Teléfono 1" type="tel" name="providerPhone1" formControlName="providerPhone1" required>
+                                    <mat-icon matSuffix>phone</mat-icon>
+                                </mat-form-field>
+
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <span matPrefix>+504 &nbsp;</span>
+                                    <input matInput placeholder="Teléfono 2" type="text" name="providerPhone2" formControlName="providerPhone2" required>
+                                    <mat-icon matSuffix>phone</mat-icon>
+                                </mat-form-field>
+
+                            </div>
+
+                            <div class="container-input">
+
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <textarea matInput placeholder="Dirección" name="providerAddress" formControlName="providerAddress" required></textarea>
+                                    <mat-icon matSuffix>notes</mat-icon>
+                                </mat-form-field>
+
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <input matInput placeholder="Correo Electrónico" type="email" name="providerEmail" formControlName="providerEmail" required>
+                                    <mat-icon matSuffix>alternate_email</mat-icon>
+                                </mat-form-field>
+
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <input matInput placeholder="Nombre de Contacto" type="text" name="providerContact" formControlName="providerContact" required>
+                                    <mat-icon matSuffix>contacts</mat-icon>
+                                </mat-form-field>
+
+                            </div>
+
+                            <div class="container-input">
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <mat-select placeholder="Ciudad" formControlName="cityId" name="city">
+                                        <mat-option *ngFor="let city of _cities" [value]="city.cityId">
+                                            {{city.cityName}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-icon matSuffix>location_city</mat-icon>
+                                </mat-form-field>
+
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <input matInput placeholder="Position del contacto" type="text" name="contactPosition" formControlName="contactPosition" required>
+                                    <mat-icon matSuffix>group</mat-icon>
+                                </mat-form-field>
+                            </div>
+                            <div class="container-button">
+                                <button mat-flat-button class="my-bg-primary text-white" type="submit" [disabled]="!providerForm.valid">Guardar Cambios</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </fieldset>
+            </div>
+            <!-- FIN CONTENEDOR DE EDITAR -->
+
+            <!-- INICIO CONTENEDOR DE FILTRO -->
+            <div class="mb-3" *ngIf="openWindowOf=='filter'">
+                <fieldset class="card">
+
+                    <legend class="s-legend">
+                        <mat-icon matSuffix>filter_list</mat-icon><span>Fitrar</span>
+                    </legend>
+
+
+                    <div>
+
+                        <form class="form-container" [formGroup]="providerForm">
+
+                            <div class="container-input">
+
+                                <mat-form-field class="form-field-full-width">
+                                    <input matInput #message maxlength="50" placeholder="Busqueda General" appAutoFocus>
+                                    <mat-icon matSuffix>search</mat-icon>
+                                    <mat-hint align="start" class="none"><strong>La cantidad de caracteres esta limitada</strong>
+                                    </mat-hint>
+                                    <mat-hint align="end" class="none">{{message.value.length}} / 50</mat-hint>
+                                </mat-form-field>
+
+                            </div>
+
+                            <div class="container-input container-filter">
+
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <input type="tel" matInput placeholder="Nombre">
+                                    <mat-icon matSuffix>shopping_basket</mat-icon>
+                                </mat-form-field>
+
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <input type="tel" matInput placeholder="RTN">
+                                    <mat-icon matSuffix>shopping_basket</mat-icon>
+                                </mat-form-field>
+
+                                <mat-form-field class="form-field-full-width mr-4">
+                                    <input type="tel" matInput placeholder="Contacto">
+                                    <mat-icon matSuffix>shopping_basket</mat-icon>
+                                </mat-form-field>
+
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </fieldset>
+            </div>
+            <!-- FIN CONTENEDOR DE FILTRO -->
+
+            <!-- INICIO CONTENEDOR DE LA TABLA -->
+            <div class="card ">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                    <!-- Checkbox Column -->
+                    <ng-container matColumnDef="select">
+                        <th mat-header-cell *matHeaderCellDef>
+                            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+                            </mat-checkbox>
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+                            </mat-checkbox>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="options">
+                        <th mat-header-cell *matHeaderCellDef> Opciones </th>
+                        <td mat-cell *matCellDef="let element">
+                            <a (click)="openTypeWindow('edit', element.providersId);" mat-icon-button class="my-color-primary" id="{{element.providersId}}">
+                                <mat-icon class="">edit</mat-icon>
+                            </a>
+                            <a mat-icon-button class="my-color-primary">
+                                <mat-icon (click)="open(content)">delete</mat-icon>
+                            </a>
+                            <ng-template #content let-modal>
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="modal-basic-title">Esta seguro que desea eliminar el proveedor?</h4>
+                                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button (click)="onDeleteProvider(element.providersId);" class="btn btn-outline-dark" id="{{element.providersId}}">Si</button>
+                                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">No</button>
+                                </div>
+                            </ng-template>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                        <td mat-cell *matCellDef="let element"> {{element.providerName}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="RTN">
+                        <th mat-header-cell *matHeaderCellDef> RTN </th>
+                        <td mat-cell *matCellDef="let element"> {{element.providerRtn}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="phone1">
+                        <th mat-header-cell *matHeaderCellDef> Teléfono 1 </th>
+                        <td mat-cell *matCellDef="let element"> {{element.providerPhone1}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="phone2">
+                        <th mat-header-cell *matHeaderCellDef> Teléfono 2 </th>
+                        <td mat-cell *matCellDef="let element"> {{element.providerPhone2}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="address">
+                        <th mat-header-cell *matHeaderCellDef> Dirección </th>
+                        <td mat-cell *matCellDef="let element"> {{element.providerAddress}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef> Correo Electrónico </th>
+                        <td mat-cell *matCellDef="let element"> {{element.providerEmail}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="contact">
+                        <th mat-header-cell *matHeaderCellDef> Contácto </th>
+                        <td mat-cell *matCellDef="let element"> {{element.providerContact}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="city">
+                        <th mat-header-cell *matHeaderCellDef> Ciudad </th>
+                        <td mat-cell *matCellDef="let element"> {{element.city.cityName}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="contactPosition">
+                        <th mat-header-cell *matHeaderCellDef> Posicion del contacto </th>
+                        <td mat-cell *matCellDef="let element"> {{element.contactPosition}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                    </tr>
+                </table>
+
+            </div>
+            <!-- FIN CONTENEDOR DE LA TABLA -->
+
+        </div>
+    </div>
+</div>
+
+<div class="button-options">
+    <a mat-fab (click)="openTypeWindow('create','');" id="add">
+        <mat-icon>add</mat-icon>
+    </a>
+
+    <a mat-fab (click)="openTypeWindow('filter','');" id="filter">
+        <mat-icon>filter_list</mat-icon>
+    </a>
+</div>

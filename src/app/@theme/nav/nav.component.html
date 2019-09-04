@@ -1,0 +1,150 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
+
+    <mat-toolbar>
+      <div class="container-toolbar">
+        <div class="container-all">
+          <div class="container-logo">
+            <div>
+              <img src="../../../assets/img/logoNegativo.png" alt="Logo"><span>Ciencias de la salud</span>
+            </div>
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+              *ngIf="isHandset$ | async">
+              <mat-icon matSuffix class="style" aria-label="Side nav toggle icon">arrow_back</mat-icon>
+            </button>
+          </div>
+          <div class="icon-sede">
+            <mat-icon>account_balance</mat-icon> <span>Ceutec Norte | San Pedro Sula </span>
+          </div>
+        </div>
+      </div>
+    </mat-toolbar>
+    <div class="navbar-scroll-container">
+      <div class="container-title">
+        <div class="container-user">
+          <h1 class="title-user">Administrador</h1>
+          <h1 class="email-user">Admin.admin@unitec.com</h1>
+        </div>
+        <div class="container-avatar-user">
+          <mat-icon matSuffix class="s-logoUser_nav">account_circle</mat-icon>
+        </div>
+      </div>
+
+      <mat-nav-list>
+        <div class="title-list-item">
+          <a class="text-muted">APLICACIONES</a>
+        </div>
+        <div class="container-item">
+          <a mat-list-item routerLinkActive="active" class="main-list" (click)="redirectToPage('home')">
+            <mat-icon>dashboard</mat-icon>DashBoard
+          </a>
+          <a mat-list-item (click)="redirectToPage('requisition')">
+            <mat-icon>assignment</mat-icon>Requisición
+          </a>
+          <a mat-list-item (click)="redirectToPage('product')">
+            <mat-icon>account_balance_wallet</mat-icon>Productos
+          </a>
+          <a mat-list-item (click)="redirectToPage('provider')">
+            <mat-icon>person</mat-icon>Proveedores
+          </a>
+          <!-- <a mat-list-item (click)="redirectToPage('shopping')">
+            <mat-icon>shopping_basket</mat-icon>Compras
+          </a> -->
+        </div>
+        <div class="title-list-item">
+          <a class="text-muted">MANTENIMIENTOS</a>
+        </div>
+        <div class="container-item">
+          <a mat-list-item (click)="redirectToPage('warehouseMaintenance')">
+            <mat-icon>directions_bus</mat-icon>Bodega
+          </a>
+          <a mat-list-item (click)="redirectToPage('brandMaintenance')">
+            <mat-icon>local_offer</mat-icon>Marca de Productos
+          </a>
+          <a mat-list-item (click)="redirectToPage('typeProductsMaintenance')">
+            <mat-icon>add_shopping_cart</mat-icon>Tipo de Productos
+          </a>
+
+        </div>
+        <div class="title-list-item">
+          <a class="text-muted">OPCIONES</a>
+        </div>
+        <div class="container-item">
+          <a mat-list-item routerLink="/" >
+            <mat-icon>exit_to_app</mat-icon>Logout
+          </a>
+        </div>
+      </mat-nav-list>
+
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="s-toolbar">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+      <!-- BUSQUEDA -->
+      <span class="container-search">
+        <mat-form-field appearance="legacy" class="w-100">
+          <mat-label>Search</mat-label>
+          <input matInput>
+          <mat-icon matSuffix class="icon-search cursor">search</mat-icon>
+        </mat-form-field>
+      </span>
+
+      <!-- ICONOS -->
+      <div class="mat-form-field-wrapper container-icon-all">
+        <div class="container-icon">
+          <mat-icon matSuffix class="w-100 size-3 cursor">notifications</mat-icon>
+          <div class="active">
+            <mat-icon matSuffix class="mr-2 text-success">fiber_manual_record</mat-icon>
+            <h1 class="size-1">Activo</h1>
+          </div>
+          <mat-icon matSuffix class="w-100 size-3">account_circle</mat-icon>
+          <mat-icon matSuffix class="w-50 size-3 cursor">more_vert</mat-icon>
+        </div>
+      </div>
+
+    </mat-toolbar>
+
+    <!--INICIO CONTENIDO -->
+    <app-dashboard *ngIf="page =='home'"></app-dashboard>
+    <!--FIN CONTENIDO -->
+
+    <!--INICIO VISTA PRODUCTOS -->
+    <app-products *ngIf="showPage && page=='product'" ></app-products>
+    <!--FIN VISTA PRODUCTOS -->
+
+    <!-- Inicio de Requisicion -->
+    <app-requisition-form *ngIf="showPage && page=='requisition'"></app-requisition-form>
+
+    <!-- Fin de la vista de Requisicion -->
+
+    <!-- Inicio de Proveedores -->
+    <app-provider *ngIf="showPage && page=='provider'"></app-provider>
+     <!-- Fin de la vista de Proveedores -->
+
+    <!-- Inicio de Proveedores -->
+    <!-- <app-shopping *ngIf="showPage && page=='shopping'"></app-shopping> -->
+    <!-- Fin de la vista de Proveedores -->
+
+     <!-- Inicio de la vista mantenimiento de bodega -->
+    <app-warehouse-maintenance *ngIf="showPage && page=='warehouseMaintenance'"></app-warehouse-maintenance>
+     <!-- Fin de la vista mantenimiento de bodega -->
+     
+<!-- Inicio de la vista mantenimiento de bodega -->
+    <app-brand-maintenance *ngIf="showPage && page=='brandMaintenance'"></app-brand-maintenance>
+    <!-- Fin de la vista mantenimiento de bodega -->
+
+    <!-- Inicio de la vista mantenimiento de bodega -->
+    <app-typeproducts *ngIf="showPage && page=='typeProductsMaintenance'"></app-typeproducts>
+    <!-- Fin de la vista mantenimiento de bodega -->
+
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>

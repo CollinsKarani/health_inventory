@@ -1,0 +1,182 @@
+<!--INICIO ETIQUETA PARA MOSTRAR LAS NOTIFICACIONES -->
+<div id="notification-container"></div>
+<!--FIN ETIQUETA PARA MOSTRAR LAS NOTIFICACIONES -->
+
+<div class="container-fluid">
+  <div class="card m-4  container-header">
+
+    <div class="card-header d-flex justify-content-start">
+      <mat-icon matSuffix class="size-3 mr-2">local_offer</mat-icon>
+      <h5>Mantenimiento de Marca</h5>
+    </div>
+    <div class="card-body">
+
+      <!-- INICIO CONTENEDOR DE CREAR -->
+      <div class="mb-3" *ngIf="openWindowOf=='create'">
+        <fieldset class="card">
+
+          <legend class="s-legend">
+            <mat-icon matSuffix>add</mat-icon><span>Crear una nueva marca</span>
+          </legend>
+
+          <div>
+
+            <form [formGroup]="brandForm" (ngSubmit)="onCreateBrand()" class="form-container">
+
+              <div class="container-input">
+
+                <mat-form-field class="form-field-full-width mr-4">
+                  <input type="text" matInput placeholder="Nombre de la marca"
+                  formControlName="productBrandName" required id="productBrandName" appAutoFocus>
+                  <mat-icon matSuffix>short_text</mat-icon>
+                </mat-form-field>
+
+              </div>
+
+              <div class="container-button">
+                <button mat-flat-button class="my-bg-primary text-white" type="submit"
+                  [disabled]="!brandForm.valid">Guardar Cambios</button>
+              </div>
+
+            </form>
+
+          </div>
+
+        </fieldset>
+      </div>
+      <!-- FIN CONTENEDOR DE CREAR -->
+
+      <!-- INICIO CONTENEDOR DE EDITAR -->
+      <div class="mb-3" *ngIf="openWindowOf=='edit'">
+        <fieldset class="card">
+
+          <legend class="s-legend">
+            <mat-icon matSuffix>edit</mat-icon><span>Editar Datos de la marca</span>
+          </legend>
+
+          <div>
+
+            <form [formGroup]="brandForm" (ngSubmit)="onEditBrand()" class="form-container">
+
+              <div class="container-input">
+
+                <mat-form-field class="form-field-full-width mr-4">
+                  <input type="text" matInput placeholder="Nombre de la marca" name="productBrandName"
+                    formControlName="productBrandName" required id="productBrandName" appAutoFocus>
+                  <mat-icon matSuffix>short_text</mat-icon>
+                </mat-form-field>
+
+              </div>
+
+              <div class="container-button">
+                <button mat-flat-button class="my-bg-primary text-white" type="submit"
+                  [disabled]="!brandForm.valid">Guardar Cambios</button>
+              </div>
+
+            </form>
+
+          </div>
+
+        </fieldset>
+      </div>
+      <!-- FIN CONTENEDOR DE EDITAR -->
+
+      <!-- INICIO CONTENEDOR DE FILTRO -->
+      <div class="mb-3" *ngIf="openWindowOf=='filter'">
+        <fieldset class="card">
+
+          <legend class="s-legend">
+            <mat-icon matSuffix>filter_list</mat-icon><span>Fitrar</span>
+          </legend>
+
+
+          <div>
+
+            <form class="form-container" [formGroup]="brandForm">
+
+              <div class="container-input">
+
+                <mat-form-field class="form-field-full-width">
+                  <input matInput #message maxlength="50" placeholder="Busqueda General" appAutoFocus>
+                  <mat-icon matSuffix>search</mat-icon>
+                  <mat-hint align="start" class="none"><strong>La cantidad de caracteres esta limitada</strong>
+                  </mat-hint>
+                  <mat-hint align="end" class="none">{{message.value.length}} / 50</mat-hint>
+                </mat-form-field>
+
+              </div>
+
+              <div class="container-input container-filter">
+
+                <mat-form-field class="form-field-full-width mr-4">
+                  <input type="text" matInput placeholder="Nombre de la marca" name="productBrandName"
+                    formControlName="productBrandName">
+                  <mat-icon matSuffix>short_text</mat-icon>
+                </mat-form-field>
+
+
+              </div>
+
+            </form>
+
+          </div>
+
+        </fieldset>
+      </div>
+      <!-- FIN CONTENEDOR DE FILTRO -->
+
+      <!-- INICIO CONTENEDOR DE LA TABLA -->
+      <div class="card ">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <!-- Checkbox Column -->
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggle() : null"
+                [checked]="selection.hasValue() && isAllSelected()"
+                [indeterminate]="selection.hasValue() && !isAllSelected()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                [checked]="selection.isSelected(row)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="options">
+            <th mat-header-cell *matHeaderCellDef> Opciones </th>
+            <td mat-cell *matCellDef="let element">
+              <a (click)="openTypeWindow('edit', element.productBrandId);" mat-icon-button class="my-color-primary"
+                id="{{element.productBrandId}}">
+                <mat-icon class="">edit</mat-icon>
+              </a>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="productBrandName">
+            <th mat-header-cell *matHeaderCellDef> Nombre de la marca </th>
+            <td mat-cell *matCellDef="let element"> {{element.productBrandName}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+          </tr>
+        </table>
+
+      </div>
+      <!-- FIN CONTENEDOR DE LA TABLA -->
+
+    </div>
+  </div>
+</div>
+
+<div class="button-options">
+  <a mat-fab (click)="openTypeWindow('create','');" id="add">
+    <mat-icon>add</mat-icon>
+  </a>
+  
+  <a mat-fab (click)="openTypeWindow('filter','');" id="filter" hidden>
+    <mat-icon>filter_list</mat-icon>
+  </a>
+</div>

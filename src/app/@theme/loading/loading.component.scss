@@ -1,0 +1,47 @@
+// COLORES
+$backgroundCard: #2E323D;
+
+
+// VARIABLES MODO RESPONSIVE
+$break-extraSmall : 576px; //menor
+$break-small : 576px; //mayor all
+$break-medium : 768px;
+$break-large : 992px;
+$break-extraLarge : 1200px;
+
+.card-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: $backgroundCard;
+
+  .spinner {
+    top: 35%;
+  }
+
+  .figure-img {
+  width: 10%; 
+  top: 30%;
+  @media screen and (max-width: $break-extraSmall) {
+    width: 30%; 
+  }
+  .logoPositivo {
+    top: 35%;
+    width: 100%;  
+   }
+  }
+}
+
+.style {
+  position: relative;
+  top: 30em;
+  background: transparent;
+    // RESOLUCION PHONE > 576px
+    @media screen and (max-width: $break-extraSmall){
+      top: 20em;
+    }
+}
+
+
+

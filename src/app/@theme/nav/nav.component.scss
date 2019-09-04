@@ -1,0 +1,310 @@
+// DECLARACION DE VARIABLES
+
+// VARIABLES DE COLORES
+$bg-color-blue: #00CBFE;
+$bg-color-semi-blue: #1A8ECB;
+$bg-color-dark: #2D323E;
+$bg-color-semi-dark: #1E212A;
+$bg-color-text-grey: #D4DAE0;
+$bg-color-text-white: #fff;
+
+// VARIABLES MODO RESPONSIVE
+$break-extraSmall : 576px; //menor
+$break-small : 576px; //mayor all
+$break-medium : 768px;
+$break-large : 992px;
+$break-extraLarge : 1200px;
+
+// VARIABLE FUENTES
+$font-first : 'Nunito Sans',
+sans-serif;
+
+// VARIABLE HIDDEN
+$hidden : hidden;
+
+// SIDENAV
+.sidenav-container {
+  height: 100%;
+  overflow: $hidden;
+}
+
+// SIDENAV GENERAL
+.sidenav {
+  width: 280px;
+  background-color: $bg-color-dark;
+  color: $bg-color-text-grey;
+   // RESOLUCION PHONE > 576px
+   @media screen and (max-width: $break-extraSmall){
+    width: 80%;
+  }
+}
+
+// ESTILO TITULOS DEL NAV
+.sidenav .mat-toolbar {
+  padding: 0;
+  background: $bg-color-semi-dark;
+  color: $bg-color-text-grey;
+  position: absolute;
+  z-index: 1;
+  div.container-toolbar {
+    position: absolute;
+
+    div.container-all {
+      margin-left: 8%;
+      div.container-logo {
+        text-transform: uppercase;
+        font-size: 1rem;
+        margin-bottom: 2%;
+        display: flex;
+        align-items: center;
+        div {
+          img {
+          width: 10%;
+          margin-right: 2%;
+          }
+          span {
+            margin-left: 12px;
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: .4px;
+          }
+        }
+        mat-icon.style {
+          display: none;
+          // RESOLUCION PHONE > 576px
+          @media screen and (max-width: $break-extraSmall) {
+            display: inline-block;
+            margin-right: 4%;
+          }
+        }
+        
+
+        span {
+          // RESOLUCION PHONE > 576px
+          @media screen and (max-width: $break-extraSmall){
+            font-size: .7rem;
+          }
+        }
+      }
+
+
+      div.icon-sede {
+        font-size: .8rem;
+        letter-spacing: .1rem;
+        display: flex;
+
+        mat-icon {
+          margin-right: 2%;
+        }
+
+        span {
+          margin-left: 12px;
+          font-size: 12px;
+          font-weight: 300;
+          letter-spacing: .4px;
+        }
+
+        // RESOLUCION PHONE > 576px
+        @media screen and (max-width: $break-extraSmall){
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.navbar-scroll-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  background: linear-gradient(rgba(0,0,0,0) 30%,rgba(0,0,0,0) 30%),linear-gradient(rgba(0,0,0,.25) 0,rgba(0,0,0,0) 40%);
+  background-repeat: no-repeat;
+  background-size: 100% 40px,100% 10px;
+  background-attachment: local,scroll;
+  position: relative;
+  margin-top: 60px;
+  div.container-title {
+    background-color: #1e2129!important;
+    display: flex;
+    align-items: center;
+    height: 145px;
+    padding: 24px 0 64px;
+    div.container-user {
+      text-align: center;
+      margin-top: 15%;
+      width: 100%;
+      h1.title-user {
+        font-size: 1rem;
+        font-family: "Nunito Sans", sans-serif;
+        font-weight: 800;
+      }
+
+      h1.email-user {
+        font-size: .8rem;
+        font-family: "Nunito Sans", sans-serif;
+        font-weight: 200;
+      }
+    }
+
+    // ESTILO AVATAR DEL NAV
+    .container-avatar-user {
+      position: absolute;
+      top: 92px;
+      border-radius: 50%;
+      padding: 8px;
+      transform: translateX(-50%);
+      left: 50%;
+      font-size: 1rem;
+
+      .s-logoUser_nav {
+        top: 25%;
+        display: flex;
+        justify-content: center;
+
+        font-size: 6rem;
+        background-color: #2D323E;
+        border-radius: 100%;
+        height: 15%;
+        width: 100%;
+      }
+    }
+  }
+
+  // ESTILO DE LISTA DE ITEMS DEL MENU
+  mat-nav-list {
+    margin-top: 10%;
+
+    div.title-list-item{
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 48px;
+      font-weight: 600;
+      margin-top: 8px;
+      font-size: 12px;
+
+      a {
+        margin-left: 8%;
+        font-size: 1.2em;
+        font-weight: 500;
+      }
+    }
+    div.container-item {
+      a {
+        color: $bg-color-text-grey;
+        // margin: 5% 0 0;
+        height: 50px;
+        &:hover {
+          background-color: $bg-color-semi-blue;
+          transition: 1s;
+          color: $bg-color-text-white;
+          font-weight: 500
+        }
+
+        mat-icon {
+          font-size: 16px;
+          width: 16px;
+          height: 16px;
+          min-width: 16px;
+          min-height: 16px;
+          line-height: 16px;
+          margin-right: 16px;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+// ESTILO TOOLBAR
+.s-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: $bg-color-blue;
+  color: $bg-color-text-white;
+}
+
+mat-sidenav {
+  overflow: $hidden;
+}
+
+span.container-search {
+  width: 50%;
+  font-size: .9rem;
+
+  // RESOLUCION PHONE > 576px
+  @media screen and (max-width: $break-extraSmall){
+    width: 85%;
+    font-size: .7rem;
+  }
+}
+// ESTILO INPUT SEARCH
+mat-sidenav-content {
+  mat-toolbar.s-toolbar {
+    div {
+      padding-left: 30%;
+      
+      // RESOLUCION PHONE > 576px
+      @media screen and (orientation:landscape) and (min-width: 453px) and (max-width: 768px) {
+        padding-left: 0;
+        font-size: .7rem;
+        width: 37%;
+      }
+
+      div {
+        display: flex;
+        justify-content: space-around;
+
+        mat-icon.icon-search {
+          font-size: 3rem;
+
+           // RESOLUCION PHONE > 576px
+           @media screen and (max-width: $break-extraSmall) and (orientation:portrait) {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ESTILO ICONOS DEL TOOLBAR
+.container-icon-all {
+  width: 45%;
+  display: flex;
+  justify-content: flex-end;
+
+  .container-icon {
+    align-items: center;
+    font-size: 1rem;
+    width: 100%;
+
+    div.active {
+      width: 100%;
+      margin: 20% 10% auto;
+      align-items: center;
+    }
+  }
+
+  // RESOLUCION PHONE > 576px
+  @media screen and (max-width: $break-extraSmall){
+    display: none;
+  }
+}
+
+// TAMAÑOS FUENTE EN EMS
+.size-3 {
+  font-size: 3em;
+}
+
+.size-1 {
+  font-size: 1.1em;
+}
+
+.cursor {
+  cursor: pointer;
+}

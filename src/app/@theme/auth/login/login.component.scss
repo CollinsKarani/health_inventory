@@ -1,0 +1,238 @@
+// Declaracion de variables
+// COLORES
+$bg-color-blue: #00CBFE;
+$bg-color-dark: #2D323E;
+$bg-color-semi-dark: #1E212A;
+$bg-color-text-grey: #D4DAE0;
+$bg-color-text-white: #fff;
+$color-text: #53575A;
+
+
+// VARIABLES MODO RESPONSIVE
+$break-extraSmall : 576px; //menor
+$break-small : 576px; //mayor all
+$break-medium : 768px;
+$break-large : 992px;
+$break-extraLarge : 1200px;
+
+// FUENTES
+$font-first : 'Nunito Sans',
+sans-serif;
+
+.color-primary {
+  background-color: $bg-color-blue;
+  overflow: hidden;
+  width: 75%;
+  height: 100%;
+
+  // RESOLUCION PHONE AND IPAD > 1200px > 768px > 576px
+  @media screen and (max-width: $break-extraSmall), (max-width: $break-medium), (max-width: $break-extraLarge) and (orientation:portrait) {
+    display: none;
+  }
+
+  // ORIENTACION HORIZONTAL > 1200px
+  @media screen and (orientation:landscape) and (max-width: $break-extraLarge) {
+    width: 60%;
+  }
+
+  // ORIENTACION HORIZONTAL
+  @media screen and (orientation:landscape) and (max-width: $break-medium) {
+    display: inline-block;
+  }
+
+    // ORIENTACION HORIZONTAL
+  @media screen and (orientation:landscape) and (max-width: $break-extraSmall) {
+    display: none;
+  }
+
+  div.container-logo {
+    position: relative;
+    top: 25%;
+    figure.logo {
+      margin: 10%;
+    }
+  }
+
+  div {
+    figure.animate {
+      margin-top: 10%;
+
+      img {
+        width: 60%
+      }
+
+    }
+  }
+}
+
+// Style for Container FormField Login
+.color-secundary {
+  width: 50%;
+
+  figure {
+    width: 30%;
+
+    div.show {
+      display: none;
+    }
+
+    // ORIENTACION HORIZONTAL
+    @media screen and (orientation:landscape) and (max-width: $break-medium) {
+      div.show {
+        visibility: hidden;
+      }
+    }
+
+    // RESOLUCION PHONE AND IPAD > 1200px > 768px > 576px
+    @media screen and (max-width: $break-extraSmall),
+    (max-width: $break-medium),
+    (max-width: $break-extraLarge) and (orientation:portrait) {
+      display: flex;
+      width: 50%;
+
+      div.show {
+        display: inline-block;
+      }
+    }
+  }
+
+  // RESOLUCION PHONE AND IPAD > 1200px > 768px > 576px
+  @media screen and (max-width: $break-extraSmall),
+  (max-width: $break-medium),
+  (max-width: $break-extraLarge) and (orientation:portrait) {
+    width: 100%;
+  }
+
+  div.container-login {
+    margin: 15% 10% auto;
+
+    // ORIENTACION HORIZONTAL
+    @media screen and (orientation: landscape) and (max-width: $break-medium) {
+      margin: 5% 10% auto;
+    }
+
+    // ORIENTACION PHONE
+    @media screen and (max-width: $break-extraSmall) and (orientation:portrait) {
+      margin: 25% 10% auto;
+    }
+
+    h1 {
+      font-family: $font-first;
+      color: $color-text;
+      font-size: 1.8rem;
+      letter-spacing: .1em;
+      line-height: 1.5em;
+      font-weight: 200;
+
+
+      // ORIENTACION HORIZONTAL > 1200px
+      @media screen and (orientation: landscape) and (max-width: $break-extraLarge) {
+        font-size: 2rem;
+        letter-spacing: normal;
+      }
+
+      // ORIENTACION HORIZONTAL
+      @media screen and (orientation:landscape) and (max-width: $break-medium) {
+        font-size: 1rem;
+        letter-spacing: normal;
+      }
+
+      // RESOLUCION IPAD > 768px
+      @media screen and (max-width: $break-medium) and (orientation:portrait) {
+        letter-spacing: normal;
+        font-size: 3rem;
+      }
+
+      // RESOLUCION PHONE > 576px
+      @media screen and (max-width: $break-extraSmall) and (orientation:portrait) {
+        font-size: 1.5rem;
+        letter-spacing: normal;
+      }
+    }
+
+    // Style for Input Password Login
+    .container-input-login {
+      display: flex;
+      flex-direction: column;
+      margin: 5% 0 0 0;
+      font-size: 1rem;
+
+      // RESOLUCION PHONE > 576px
+      @media screen and (max-width: $break-extraSmall) and (orientation:portrait) {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+
+      // ORIENTACION HORIZONTAL
+      @media screen and (orientation:landscape) and (max-width: $break-medium) {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+    }
+
+    .container-input-login>* {
+      width: 100%;
+    }
+
+    // Style RadioButtom
+    .btn-radio {
+      display: flex;
+      justify-content: space-between;
+
+      // RESOLUCION PHONE > 576px
+      @media screen and (max-width: $break-extraSmall) and (orientation:portrait) {
+        display: block;
+      }
+
+      .mat-radio-button~.mat-radio-button {
+        margin-left: 16px;
+      }
+
+      .mat-radio-button,
+      a {
+        color: $color-text;
+        font-size: .8rem;
+
+        // ORIENTACION HORIZONTAL >1200px
+        @media screen and (orientation: landscape) and (max-width: $break-extraLarge) {
+          font-size: .9em;
+        }
+
+        // ORIENTACION HORIZONTAL
+        @media screen and (orientation:landscape) and (max-width: $break-medium) {
+          font-size: .7em;
+        }
+
+        // RESOLUCION PHONE > 576px
+        @media screen and (max-width: $break-extraSmall) and (orientation:portrait) {
+          font-size: 1rem;
+          display: block;
+        }
+      }
+    }
+
+    .btnAcLogin {
+      width: 100%;
+      padding: 3%;
+      margin-top: 10%;
+      background-color: #00CBFE;
+      color: white;
+      font-size: 1.5rem;
+      border-radius: 10px;
+      cursor: pointer;
+
+      @media screen and (max-width: $break-extraSmall) and (orientation:portrait) {
+        font-size: 1rem;
+        border-radius: 5px;
+      }
+
+      // ORIENTACION HORIZONTAL
+      @media screen and (orientation:landscape) and (max-width: $break-medium) {
+        padding: 1%;
+        margin-top: 2%;
+        font-size: 1rem;
+        border-radius: 5px;
+      }
+    }
+  }
+}

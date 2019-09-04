@@ -1,0 +1,53 @@
+<!--INICIO ETIQUETA PARA MOSTRAR LAS NOTIFICACIONES -->
+<div id="notification-container"></div>
+<!--FIN ETIQUETA PARA MOSTRAR LAS NOTIFICACIONES -->
+
+<div class="d-flex justify-content-center w-100 h-100 ">
+  <div class="color-secundary ">
+    <figure>
+      <div class="mr-3">
+      <img src="../assets/img/lCeutec.png" alt="" class="w-100 ml-4 mt-4">
+      </div>
+      <div class="show">
+      <img class="w-25 ml-4 mt-3" src="../../../assets/img/logoPositivo.png"/>
+      </div>
+    </figure>
+    <div class="container-login">
+      <h1>Comienza, Iniciando Sesión <span class="font-weight-bold">Con tu Cuenta</span></h1>
+
+      <form [formGroup]="loginForm" (ngSubmit)="login()" class="form-container">
+        <div class="container-input-login">
+          <mat-form-field [hideRequiredMarker]="options.value.hideRequired" [floatLabel]="options.value.floatLabel">
+            <input matInput placeholder="Nombre de Usuario"formControlName="username"  required >
+          </mat-form-field>
+        </div>
+        <div class="container-input-login">
+          <mat-form-field>
+            <input matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="btn-radio">
+          <mat-radio-group>
+            <mat-radio-button value="1">Recordar Contraseña</mat-radio-button>
+          </mat-radio-group>
+          <a href="#">¿Olvidaste tu Contraseña?</a>
+        </div>
+        <div class="text-center">
+          <button mat-raised-button class="btnAcLogin" routerLinkActive="active" type="submit" [disabled]="!loginForm.valid">Entrar</button>
+        </div>
+    </form>
+    </div>
+  </div>
+  <div class="color-primary">
+    <div class="text-center mt-5 container-logo">
+      <figure class="logo">
+        <img src="../assets/img/Logo.png" alt="" class="w-100">
+      </figure>
+      <!-- <figure class="animate">
+        <img src="../assets/img/animate.png" alt="">
+      </figure> -->
+    </div>
+  </div>
+</div>
